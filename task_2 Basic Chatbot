@@ -1,0 +1,66 @@
+import nltk
+from nltk.chat.util import Chat, reflections
+
+# Define an extended set of patterns and responses
+patterns = [
+    # Greetings
+    (r'hi|hello|hey|greetings', ['Hello! How can I assist you today?', 'Hi there! How can I help?']),
+    
+    # Self-Introduction
+    (r'what is your name?', ['I am a chatbot created using NLTK.', 'I don’t have a personal name, but you can call me ChatBot.']),
+    (r'how are you\??', ['I’m doing well, thanks for asking! How about you?', 'I’m functioning as expected. How can I assist you today?']),
+    
+    # Location
+    (r'where are you located\?', ['I exist in the digital realm, so I’m not located anywhere physically.', 'I’m a virtual assistant with no physical location.']),
+    
+    # Capabilities
+    (r'what can you do\??', ['I can chat, answer questions, and provide information on various topics. Ask me anything!', 'I can engage in conversation, help with queries, and provide information on many topics.']),
+    
+    # Help and Support
+    (r'help|support', ['I can assist with general questions. For technical support, please contact our support team.', 'If you need help, feel free to ask. For technical issues, please reach out to our support.']),
+    (r'feedback|suggestions', ['I appreciate your feedback! Please share your suggestions.', 'Your feedback is valuable. What do you suggest?']),
+    
+    # Commands and Farewells
+    (r'(.*) (thanks|thank you|thx)', ['You’re welcome!', 'Glad to help!']),
+    (r'(.*) (bye|goodbye|quit)', ['Goodbye! Have a great day!', 'Bye! Feel free to return if you have more questions.']),
+    
+    # Weather and Related Queries
+    (r'(.*) (weather|temperature|forecast)', ['I’m not able to check the weather. Please use a weather app or website.', 'For weather updates, please refer to your local weather service.']),
+    
+    # Specific Queries
+    (r'(.*) (news|headlines|current events)', ['I don’t have access to current news. Please check a news website or app.', 'For current events, please refer to your favorite news source.']),
+    (r'(.*) (joke|funny)', ['Why don’t scientists trust atoms? Because they make up everything!', 'I told my computer I needed a break, and now it won’t stop sending me KitKats.']),
+    
+    # Multi-turn Conversations
+    (r'(.*) your favorite (.*)', ['I don’t have preferences, but I’m here to help you with whatever you need.', 'I’m a chatbot and don’t have favorites, but I’m happy to assist you!']),
+    
+    # Unknown Queries
+    (r'(.*)', ['Sorry, I didn’t quite understand that. Can you please rephrase?', 'I’m not sure how to respond to that. Can you ask something else?'])
+]
+
+# Define the chatbot class with more complex logic
+class AdvancedChatbot(Chat):
+    def __init__(self, pairs, reflections=None):
+        super().__init__(pairs, reflections)
+        self.context = {}
+
+    def respond(self, user_input):
+        response = super().respond(user_input)
+        # Add custom logic here, if needed
+        return response
+
+# Create and run the chatbot function
+def chatbot():
+    print("Hi! I'm your chatbot. Type 'quit', 'bye', or 'goodbye' to exit.")
+    chat = AdvancedChatbot(patterns, reflections)
+    while True:
+        user_input = input("You: ")
+        response = chat.respond(user_input)
+        print("Chatbot:", response)
+        if user_input.lower() in ['quit', 'bye', 'goodbye']:
+            print("Chatbot: Goodbye! Have a great day!")
+            break
+
+# Run the chatbot
+if __name__ == "__main__":
+    chatbot()
